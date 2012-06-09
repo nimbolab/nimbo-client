@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
-
 require 'nimbo'
 
 suite_dir = ARGV[0] || '.'
 
-nimbo_client = Nimbo::Client.new 'localhost:4000', ENV['TMPDIR']
+nimbo_client = Nimbo::Client.new 'http://api.nimbolab.com/test', ENV['TMPDIR']
 suite_archive = nimbo_client.archive(suite_dir)
 
-puts nimbo_client.request(suite_archive)
+result = nimbo_client.request(suite_archive)
+puts result

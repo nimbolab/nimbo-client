@@ -15,7 +15,7 @@ module Nimbo
 		end
 
 		def request(suite_archive)
-			RestClient.post @service_url, :suite_archive => suite_archive
+			RestClient.post @service_url, :suite_archive => File.new(suite_archive, 'rb')
 		end
 	
 	end

@@ -10,7 +10,7 @@ module Nimbo
 
 		def archive(suite_dir)
 			suite_archive =  File.join @tmp_dir, 'suite.tar.gz'
-			out = `tar -cvf #{suite_archive} #{suite_dir}`
+			`tar -cvf #{suite_archive} #{suite_dir}`
 			suite_archive
 		end
 

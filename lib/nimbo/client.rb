@@ -3,14 +3,15 @@ require 'rest_client'
 module Nimbo
 	class Client
 
-	  def initialize(service_url)
+	  def initialize(service_url, tmp_dir)
 	  	@service_url = service_url
+	  	@tmp_dir = tmp_dir
 	  end
 
 		def archive(suite_dir)
-			suite_archive = 'suite.tar.gz'
+			suite_archive =  File.join @tmp_dir, 'suite.tar.gz'
 			out = `tar -cvf #{suite_archive} #{suite_dir}`
-			File.join(suite_dir, suite_archive)
+			suite_archive
 		end
 
 		def request(suite_archive)

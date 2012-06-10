@@ -8,7 +8,7 @@ class Nimbo::Client
   end
 
   def send(suite)
-    RestClient.post @service_url, :suite_archive => suite.archive
+    RestClient.post @service_url, :suite_archive => File.new(suite.archive, 'a+')
   end
 end
 

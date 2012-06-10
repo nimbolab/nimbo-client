@@ -8,24 +8,18 @@ describe 'Nimbo::Client::Suite' do
   describe "#archive" do
     before :each do
       @suite = Nimbo::Client::Suite.new "/home/user/suite"
-      @suite.stub(:`).and_return('archive file created')
+      @suite.tmp_dir = '/tmp/dir'
+      @suite.stub(:system).and_return(true)
       @archive_path = File.join(@suite.tmp_dir, "suite_#{@suite.object_id}.tar.gz")
     end
 
-    it "creates archive file in tmp dir" do
-      @suite.archive.path.should == @archive_path 
+    it "calls system gzipping command" do
+      @suite.should_receive(:system).with("tar -cvf #{@archive_path} #{@suite.suite_dir}")
+      @suite.archive
     end
 
-    it "returns archive file" do
-      File.file?(@suite.archive).should be_true
-    end
-  end
-
-  describe "#archive_path" do
     it "returns archive file path" do
-      suite = Nimbo::Client::Suite.new "home/user/suite"
-      suite.tmp_dir = '/tmp/dir'
-      suite.archive_path.should == File.join("/tmp/dir", "suite_#{suite.object_id}.tar.gz")
+      @suite.archive.should == @archive_path
     end
   end
 end

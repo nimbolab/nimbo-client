@@ -1,5 +1,3 @@
-require 'zip/zip'
-
 class Nimbo::Client::Suite
   attr_accessor :tmp_dir
 

@@ -14,7 +14,7 @@ describe 'Nimbo::Client::Suite' do
     end
 
     it "calls system gzipping command" do
-      @suite.should_receive(:system).with("tar -cvf #{@archive_path} #{@suite.suite_dir}")
+      @suite.should_receive(:system).with("tar -cf #{@archive_path} #{@suite.suite_dir}")
       @suite.archive
     end
 

@@ -10,7 +10,7 @@ module Nimbo
 
     def archive
       archive_path = File.join(@tmp_dir, "suite_#{object_id}.tar.gz")
-      success = system("tar -cvf #{archive_path} #{@suite_dir}")
+      success = system("tar -cf #{archive_path} #{@suite_dir}")
       archive_path if success
     end
   end

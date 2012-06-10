@@ -5,7 +5,7 @@ module Nimbo
     attr_accessor :service_url
 
     def initialize
-      @service_url = 'http://localhost:4000/test'
+      @service_url = 'http://nimbolab.com:4000/test'
     end
 
     def send(suite)
